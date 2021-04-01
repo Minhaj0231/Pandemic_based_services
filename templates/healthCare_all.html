@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}All Healthcare Specialist{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+  <h3 class="text-center my-5">
+  </h3>
+    <h3 class="text-center my-5">All Healthcare Specialist</h3>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-3">
+            {% for item in result %}
+            <div class="col mb-4 ">
+                <div class="card text-center border border-warning rounded ">
+                  <img height=250 src="/static/img/{{item['image']}}" class="card-img-top" alt="card-img-top"/>
+                  <div class="card-body">
+                    <h5 class="card-title">{{item['name']}}</h5>
+                    <a href="{{ url_for('healthCare.getSingelHealthCareinfo', healthCare_phone=item['phone'] ) }}" class="btn btn-primary">Details</a>
+                  </div>
+                </div>
+              </div>
+                <!-- end here -->
+
+            {% endfor %} 
+                    
+        </div>
+</div>
+{% endblock %}

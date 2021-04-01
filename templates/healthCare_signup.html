@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}HealthCare Info{% endblock %}
+
+
+
+{% block body %}
+
+
+<div class="m-2 " >
+    <div class="d-flex justify-content-center">
+        <h3>Add info</h3>
+    </div>
+    <form action="{{ url_for('healthCare.postAddHealthCareInfo') }}" method="POST" enctype="multipart/form-data" >
+        <div class="form-group">
+            <label for="Area">Area</label>
+            <input type="text" class="form-control" id="Area" name="Area" placeholder="Enter Area" required >
+        </div>
+
+        <div class="form-group">
+            <label for="Area">specialized</label>
+            <input type="text" class="form-control" id="specialized" name="specialized" placeholder="Enter specialized domain " required >
+        </div>
+        
+        <div class="form-group">
+            <label for="Certification">Certification and Experience</label>
+            <input type="text" class="form-control" id="Certification" name="Certification" placeholder="Enter Certification and Experience detail" required >
+        </div>
+    
+        <div class="form-group">
+            <label for="PerUnitCharge"> Charge</label>
+            <input type="number" class="form-control" id="PerUnitCharge" name="PerUnitCharge" placeholder="Enter  Charge amount" required >
+        </div>
+        
+        <div class="form-group">
+            <label for="UserImage">Image</label>
+            <input type="file" class="form-control" id="UserImage" name="UserImage"  required >
+        </div>
+        
+        
+        
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    
+
+</div>
+
+{% endblock %}

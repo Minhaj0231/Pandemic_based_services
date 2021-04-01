@@ -4,6 +4,7 @@ from mongoengine import *
 class HealthCareSpecialist(Document):
         image = StringField(max_length=100, required=True)
         name = StringField(max_length=100, required=True)
+        specialized = StringField(max_length=100, required=True)
         phone = StringField(max_length=100, required=True)
         area = StringField(max_length=100, required=True)
         certification_experience = StringField(max_length=400)
@@ -16,24 +17,24 @@ class HealthCareSpecialist_comment(Document):
 	comment = StringField(max_length=100)
 
 class Message(Document):
-	user_phone = StringField(max_length=100)
-        advisor_phone = StringField(max_length=100)
-	message_sender = StringField(max_length=100)
-	message = StringField(max_length=100)
+    user_phone = StringField(max_length=100)
+    advisor_phone = StringField(max_length=100)
+    message_sender = StringField(max_length=100)
+    message = StringField(max_length=100)
   
 
-class NurseDb():
+class HealthCareSpecialistDb():
     def __init__(self):
         pass   
 
-    def add_health_care_specialist(self, image, name, phone, area, certification_experience, charge):
+    def add_health_care_specialist(self, image, name, specialized, phone, area, certification_experience, charge):
         #print(phone)
         hc_specialist = HealthCareSpecialist.objects(phone = phone )
         
         if hc_specialist:
             return {"success": True}
         else:
-            new_hc_specialist = HealthCareSpecialist(image=image, name=name, phone=str(phone), area=area, certification_experience=certification_experience,charge=charge)
+            new_hc_specialist = HealthCareSpecialist(image=image, name=name, specialized=specialized, phone=str(phone), area=area, certification_experience=certification_experience,charge=charge)
             new_hc_specialist.save()
             recent_added_hc_specialist = HealthCareSpecialist.objects(phone = phone )
             if recent_added_hc_specialist:
@@ -52,6 +53,7 @@ class NurseDb():
                    '_id': str(hc_specialist.pk),
                    'image': hc_specialist.image,
                    'name': hc_specialist.name,
+                   'specialized': hc_specialist.specialized,
                    'phone': hc_specialist.phone,
                    'area': hc_specialist.area,
                    'certification_experience': hc_specialist.certification_experience,
@@ -69,6 +71,7 @@ class NurseDb():
                    '_id': str(hc_specialist.pk),
                    'image': hc_specialist.image,
                    'name': hc_specialist.name,
+                   'specialized': hc_specialist.specialized,
                    'phone': hc_specialist.phone,
                    'area': hc_specialist.area,
                    'certification_experience': hc_specialist.certification_experience,
